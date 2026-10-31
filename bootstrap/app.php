@@ -4,6 +4,8 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Http\Request;
+use Modules\Authors\Exceptions\AuthorHasBooksException;
+use Modules\Books\Exceptions\BookNotAvailableException;
 use Modules\Products\Exceptions\InsufficientStockException;
 
 return Application::configure(basePath: dirname(__DIR__))
@@ -26,4 +28,15 @@ return Application::configure(basePath: dirname(__DIR__))
         $exceptions->render(function (InsufficientStockException $e, Request $request) {
             return $e->render($request);
         });
+
+        // Tugas 5.1: custom exception modul Perpustakaan
+        $exceptions->render(function (BookNotAvailableException $e, Request $request) {
+            return $e->render($request);
+        });
+
+        $exceptions->render(function (AuthorHasBooksException $e, Request $request) {
+            return $e->render($request);
+        });
     })->create();
+
+    

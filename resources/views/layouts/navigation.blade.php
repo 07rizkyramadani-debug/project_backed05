@@ -18,6 +18,12 @@
                     <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.*')">
                         {{ __('Produk') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('books.index')" :active="request()->routeIs('books.*')">
+                        {{ __('Buku') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('authors.index')" :active="request()->routeIs('authors.*')">
+                        {{ __('Penulis') }}
+                    </x-nav-link>
                 </div>
             </div>
 
