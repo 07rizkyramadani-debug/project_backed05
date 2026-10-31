@@ -1,11 +1,12 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex justify-between items-center">
+        <div style="display:flex;justify-content:space-between;align-items:center;" class="flex justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ __('Daftar Buku') }}</h2>
-            <a href="{{ route('books.create') }}"
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">+ Tambah Buku</a>
+            <a href="{{ route('books.create') }}" class="btn-tambah">+ Tambah Buku</a>
         </div>
     </x-slot>
+
+    <x-action-styles />
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -37,21 +38,17 @@
                                     <td class="py-3 px-6 text-right">Rp {{ number_format($book->price, 2, ',', '.') }}</td>
                                     <td class="py-3 px-6 text-center">{{ $book->stock }}</td>
                                     <td class="py-3 px-6 text-center">
-                                        <div class="flex justify-center space-x-3">
+                                        <div class="aksi-group">
                                             <form action="{{ route('books.borrow', $book) }}" method="POST">
                                                 @csrf
-                                                <button type="submit"
-                                                    class="text-green-600 hover:text-green-800 font-semibold">
-                                                    Pinjam</button>
+                                                <button type="submit" class="btn-aksi btn-pinjam">Pinjam</button>
                                             </form>
-                                            <a href="{{ route('books.edit', $book) }}"
-                                                class="text-blue-500 hover:text-blue-700 font-semibold">Edit</a>
+                                            <a href="{{ route('books.edit', $book) }}" class="btn-aksi btn-edit">Edit</a>
                                             <form action="{{ route('books.destroy', $book) }}" method="POST"
                                                 onsubmit="return confirm('Hapus buku ini?');">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit"
-                                                    class="text-red-500 hover:text-red-700 font-semibold">Hapus</button>
+                                                <button type="submit" class="btn-aksi btn-hapus">Hapus</button>
                                             </form>
                                         </div>
                                     </td>
@@ -71,5 +68,4 @@
         </div>
     </div>
 </x-app-layout>
-
 

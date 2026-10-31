@@ -1,24 +1,23 @@
-{{-- Flash message sukses/error + ringkasan error validasi --}}
+{{-- Flash message sukses/error + ringkasan error validasi (style inline agar tampil tanpa build Tailwind) --}}
 @if (session('success'))
-    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4" role="alert">
+    <div role="alert" style="background:#dcfce7;border:1px solid #4ade80;color:#166534;padding:12px 16px;border-radius:6px;margin-bottom:16px;">
         {{ session('success') }}
     </div>
 @endif
 
 @if (session('error'))
-    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4" role="alert">
+    <div role="alert" style="background:#fee2e2;border:1px solid #f87171;color:#991b1b;padding:12px 16px;border-radius:6px;margin-bottom:16px;">
         {{ session('error') }}
     </div>
 @endif
 
 @if ($errors->any())
-    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4" role="alert">
-        <ul class="list-disc list-inside">
+    <div role="alert" style="background:#fee2e2;border:1px solid #f87171;color:#991b1b;padding:12px 16px;border-radius:6px;margin-bottom:16px;">
+        <ul style="list-style:disc;padding-left:20px;margin:0;">
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
             @endforeach
         </ul>
     </div>
 @endif
-
 

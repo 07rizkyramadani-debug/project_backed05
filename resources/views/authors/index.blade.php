@@ -1,11 +1,12 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex justify-between items-center">
+        <div style="display:flex;justify-content:space-between;align-items:center;" class="flex justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ __('Daftar Penulis') }}</h2>
-            <a href="{{ route('authors.create') }}"
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">+ Tambah Penulis</a>
+            <a href="{{ route('authors.create') }}" class="btn-tambah">+ Tambah Penulis</a>
         </div>
     </x-slot>
+
+    <x-action-styles />
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -31,15 +32,13 @@
                                     <td class="py-3 px-6">{{ $author->email }}</td>
                                     <td class="py-3 px-6 text-center">{{ $author->books_count }}</td>
                                     <td class="py-3 px-6 text-center">
-                                        <div class="flex justify-center space-x-3">
-                                            <a href="{{ route('authors.edit', $author) }}"
-                                                class="text-blue-500 hover:text-blue-700 font-semibold">Edit</a>
+                                        <div class="aksi-group">
+                                            <a href="{{ route('authors.edit', $author) }}" class="btn-aksi btn-edit">Edit</a>
                                             <form action="{{ route('authors.destroy', $author) }}" method="POST"
                                                 onsubmit="return confirm('Hapus penulis ini?');">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit"
-                                                    class="text-red-500 hover:text-red-700 font-semibold">Hapus</button>
+                                                <button type="submit" class="btn-aksi btn-hapus">Hapus</button>
                                             </form>
                                         </div>
                                     </td>
